@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <link href="css/login.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <link href="easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link href="easyui/themes/icon.css" rel="stylesheet" />
+    <script src="js/debug/debug.data.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="easyui/jquery.easyui.min.js"></script>
+    <script src="easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body style="padding:0px;" fit="true">
+<form action="${pageContext.request.contextPath}/systemuser/login.do" method="post">
+    <div class="Box">
+        <div class="BoxL">
+            <div class="BoxLT">Welcome</div>
+            <div class="BoxLA">
+            </div>
+        </div>
+        <div class="BoxR">
+            <div class="BoxRCon">
+                <div class="fishT">XXX系统登陆界面</div>
+                <div class="line1 MT30">
+                    <i class=""></i>
+                    <div class="">账号：</div>
+                    <span class=""><input id="loginname" name="username" value="${username}" type="text" onkeydown="if(event.keyCode==13) submitForm();"></span>
+                </div>
+                <div class="line1 MT10 mod">
+                    <i class=""></i>
+                    <div class="">密码：</div>
+                    <span class=""><input id="password" name="password" value="${password}" type="password" onkeydown="if(event.keyCode==13) submitForm();"></span>
+                </div>
+                <div align="center" class="MT10" style="">
+                    <i class=""></i>
+                    <input type="checkbox" id="saveCookie" name="saveCookie" style="margin-left: -95px;"></input>
+                    <div style="margin-top: -18px; margin-left: 30px; cursor:pointer" onclick="changeCheckbox()">是否记住账号密码？</div>
+                </div>
+                <div class="btn MT10" onclick="submitForm()">登录</div>
+                <div class="errorMsg">${errorStr}</div>
+            </div>
+        </div>
+    </div>
+    <!--遮罩-->
+    <div class="mask myHide"></div>
+</form>
+
+<script>
+    $(function (){
+        $("#loginname").focus();
+        var check = '${saveCookie}';
+
+        if(check === 'on'){
+            $("#saveCookie").attr("checked",'true');
+        }
+    });
+    function submitForm(){
+        $("form").submit();
+    }
+    function changeCheckbox(){
+        $("#saveCookie").attr("checked",!$("#saveCookie").attr("checked"));
+    }
+</script>
+</body>
+</body>
+</body>
+</html>

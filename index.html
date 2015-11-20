@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>EasyUI 例子</title>
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link href="easyui/themes/icon.css" rel="stylesheet" />
+    <script src="js/debug/debug.data.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="easyui/jquery.easyui.min.js"></script>
+    <script src="easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body onload="init()">
+<div class="easyui-layout" style="width:100%;height:400px;" fit="true">
+    <div id="div_top" data-options="region:'north'" style="height:100px;">
+        <img src="imgs/logo.png"/>
+        <div id="system_name">
+            Easy UI 简易系统框架
+        </div>
+        <div id="div_top_tool">
+            欢迎<span id="user_name">Admin</span>
+            <a href="javascript:void(0);">修改密码</a>
+            <a href="javascript:void(0);">安全退出</a>
+        </div>
+    </div>
+    <div data-options="region:'west',title:'导航菜单',split:true" style="width:200px;">
+        <div id="leftMenu" class="easyui-accordion" fit="true" style="border: none;">
+
+        </div>
+    </div>
+    <div data-options="region:'center'" style="border: none; height: 100%;">
+        <div id="tab_main" class="easyui-tabs" fit="true">
+            <div id="div_welcome" title="欢迎页" fit="true">
+                <div class="content">
+                    <h1>欢迎使用Easy UI框架</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div region="south" split="false" style="overflow: hidden;">
+        <div class="footer">By 小平 Email:admin@jiuniubang.com</div>
+    </div>
+</div>
+<script>
+    // 初始化页面
+    function init() {
+        createMenus(menuList);
+        $('#leftMenu li').click(function() {
+            $('#leftMenu li').removeClass("selected");
+            $(this).addClass("selected");
+            var menuData = $(this).attr("menuData");
+            menuData = typeof menuData == 'string' ? JSON.parse(menuData) : menuData;
+            addTab(menuData.menuname, menuData.url);
+        });
+
+    }
+    //创建左侧菜单
+    function createMenus(menus) {
+        $.each(menus, function(i, menu) {
+            var content = "";
+            content += "<ul>";
+            $.each(menu.children, function(j, subMenu) {
+                content += "<li menuData='"+ JSON.stringify(subMenu)+"'><div class='"+subMenu.icon+"' iconCls='icon-ok'></div>"+ subMenu.menuname+"</li>";
+            });
+            content += "</ul>";
+            $('#leftMenu').accordion('add', {
+                title : menu.menuname,
+                content : content,
+                iconCls : menu.icon
+            });
+        });
+
+        var panel = $('#leftMenu').accordion('panels');
+        var title = panel[0].panel('options').title;
+        $('#leftMenu').accordion('select', title);
+    }
+    //添加Tab页面
+    function addTab(title, url){
+        if ($('#tab_main').tabs('exists', title)){
+            $('#tab_main').tabs('select', title);
+        } else {
+            var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+            $('#tab_main').tabs('add',{
+                title:title,
+                content:content,
+                closable:true
+            });
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+html{
+    font-family: "微软雅黑";
+}
+/** 首页标题背景图片*/
+#div_top{
+    background: url("../imgs/bg.png");
+}
+/** 首页标题背景图片*/
+#div_top img{
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+/** 系统名称样式*/
+#div_top #system_name{
+    float: left;
+    width: 300px;
+    margin-left: 10px;
+    line-height: 85px;
+    font-size: 24px;
+    color: #ffffff;
+}
+/** 系统工具条样式*/
+#div_top #div_top_tool{
+    float: right;
+    margin-top: 75px;
+    margin-right: 20px;
+}
+#div_top #div_top_tool a{
+    margin-left: 10px;
+}
+
+/** 欢迎页样式*/
+#div_welcome{
+    display: table;
+}
+#div_welcome .content{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+/** 左侧菜单样式*/
+#leftMenu ul{
+    padding-left: 10px;
+    padding-right: 20px;
+}
+#leftMenu li{
+    width: 100%;
+    list-style-type:none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+#leftMenu li div{
+    width: 20px;
+    height: 15px;
+    float: left;
+    margin-right: 5px;
+}
+#leftMenu li.selected{
+    background: #f9ec89;
+    border: 1px solid #e68900;
+}
+#leftMenu li:hover{
+    background: #95B8E7;
+    border: 1px solid #0081C2;
+}
+/** 底部样式*/
+.footer{
+    height: 30px;
+    line-height: 30px;
+    background: #D2E0F2;
+    overflow: hidden;
+    text-align: center;
+}
+/** 设置tab页面的panel无滚动条*/
+.tabs-panels .panel-body{
+    overflow: hidden;
+}
+/** */
+form table td.label{
+    vertical-align: middle;
+    text-align: right;
+}
